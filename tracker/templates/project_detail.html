@@ -1,0 +1,15 @@
+{% extends 'partial/base.html' %}
+{% block title %}{{ project.name }}{% endblock %}
+{% block menu %}{% include 'partial/search.html' %}{% endblock %}
+{% block content %}
+<h1 style="margin: 1rem">{{ project.name }}</h1>
+<div class="card" style="margin-bottom: 1rem">
+    <div class="card-body">{{ project.description }}</div>
+</div>
+{% for issue in issues %}
+    {% include 'partial/issue_list.html' %}
+{% empty %}
+<h3>No issues found for this project.</h3>
+{% endfor %}
+<a href="{% url 'issue_create_project' project.pk %}" class="btn btn-success">Create New Issue</a>
+{% endblock %}

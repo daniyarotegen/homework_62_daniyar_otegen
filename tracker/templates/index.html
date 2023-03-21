@@ -1,0 +1,19 @@
+{% extends 'partial/base.html' %}
+{% block title %}
+Home
+{% endblock %}
+{% block menu %}
+{% if is_paginated %}
+{% include 'partial/pagination.html' %}
+{% endif %}
+{% include 'partial/search.html' %}
+{% endblock %}
+{% block content %}
+<h1 style="margin: 1rem">Issue Tracker</h1>
+
+{% for issue in issues %}
+    {% include 'partial/issue_list.html' %}
+{% empty %}
+<h1>Tasks are not found!</h1>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'partial/base.html' %}
+{% block title %}
+Issue Update
+{% endblock %}
+<h1>Edit Article</h1>
+{% block content %}
+<h1 style="margin: 1rem">Issue Update</h1>
+<div class="form">
+    <form action="{% url 'issue_update' issue.pk %}" method="post">
+        {% include 'partial/form.html' with button_text='Update' %}
+    </form>
+</div>
+{% endblock %}
