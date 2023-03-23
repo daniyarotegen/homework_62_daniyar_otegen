@@ -1,0 +1,17 @@
+{% extends 'partial/base.html' %}
+{% block title %}
+    Delete Project
+{% endblock %}
+{% block content %}
+<h1 style="margin: 1rem">Delete project {{ project.name }}?</h1>
+    <div class="row" style="margin-left: 1rem">
+        <div class="col-md-12">
+            <p>Are you sure you want to delete this project?</p>
+            <form action="{% url 'project_confirm_delete' project.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

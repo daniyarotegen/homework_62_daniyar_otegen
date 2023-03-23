@@ -4,6 +4,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import DeleteView, UpdateView, CreateView, TemplateView
 from tracker.forms import IssueForm
 from tracker.models import Issue
+from tracker.permissions import user_in_issue_project, user_in_project
 
 
 class IssueDetailView(TemplateView):
@@ -22,14 +23,33 @@ class IssueDetailView(TemplateView):
 
 class IssueCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'issue_create.html'
-    model = Issue
     form_class = IssueForm
     success_message = 'Issue was created!'
-    permission_required = 'tracker.add_issue'
-    permission_denied_message = 'Not sufficient access rights'
 
     def get_success_url(self):
         return reverse('issue_detail', kwargs={'pk': self.object.pk})
+
+    def get_permission_required(self):
+        if self.request.user.groups.filter(name='Project Manager').exists():
+            return 'tracker.add_issue'
+        elif self.request.user.groups.filter(name='Team Lead').exists():
+            return 'tracker.add_issue'
+        elif self.request.user.groups.filter(name='Developer').exists():
+            return 'tracker.add_issue'
+        return None
+
+    def has_permission(self):
+        permission = self.get_permission_required()
+        if permission is None:
+            return False
+        return self.request.user.has_perm(permission) and user_in_project(self.request.user, self.get_object())
+
+    def form_valid(self, form):
+        project = self.get_object()
+        issue = form.save(commit=False)
+        issue.project = project
+        issue.save()
+        return super().form_valid(form)
 
 
 class IssueUpdateView(PermissionRequiredMixin, UpdateView):
@@ -37,11 +57,24 @@ class IssueUpdateView(PermissionRequiredMixin, UpdateView):
     form_class = IssueForm
     model = Issue
     success_message = 'Issue was updated!'
-    permission_required = 'tracker.change_issue'
-    permission_denied_message = 'Not sufficient access rights'
 
     def get_success_url(self):
         return reverse('issue_detail', kwargs={'pk': self.object.pk})
+
+    def get_permission_required(self):
+        if self.request.user.groups.filter(name='Project Manager').exists():
+            return 'tracker.change_issue'
+        elif self.request.user.groups.filter(name='Team Lead').exists():
+            return 'tracker.change_issue'
+        elif self.request.user.groups.filter(name='Developer').exists():
+            return 'tracker.change_issue'
+        return None
+
+    def has_permission(self):
+        permission = self.get_permission_required()
+        if permission is None:
+            return False
+        return self.request.user.has_perm(permission) and user_in_issue_project(self.request.user, self.get_object())
 
 
 class IssueDeleteView(PermissionRequiredMixin, DeleteView):
@@ -49,5 +82,17 @@ class IssueDeleteView(PermissionRequiredMixin, DeleteView):
     model = Issue
     success_url = reverse_lazy('index')
     success_message = 'Issue was deleted!'
-    permission_required = 'tracker.delete_issue'
-    permission_denied_message = 'Not sufficient access rights'
+
+    def get_permission_required(self):
+        if self.request.user.groups.filter(name='Project Manager').exists():
+            return 'tracker.change_issue'
+        elif self.request.user.groups.filter(name='Team Lead').exists():
+            return 'tracker.change_issue'
+        return None
+
+    def has_permission(self):
+        permission = self.get_permission_required()
+        if permission is None:
+            return False
+        return self.request.user.has_perm(permission) and user_in_issue_project(self.request.user, self.get_object())
+

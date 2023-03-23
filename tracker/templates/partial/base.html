@@ -34,7 +34,7 @@
                     <a class="nav-link" href="{% url 'project_create' %}">Create Project</a>
                 </li>
                 {% endif %}
-                {% if perms.tracker.add_issue %}
+                {% if perms.tracker.change_issue %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'issue_create' %}">Create Issue</a>
                 </li>

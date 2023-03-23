@@ -63,3 +63,4 @@ class Issue(models.Model):
 
     class Meta:
         app_label = 'tracker'
+

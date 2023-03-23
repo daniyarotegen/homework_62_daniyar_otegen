@@ -1,9 +1,16 @@
 {% extends 'partial/base.html' %}
 {% block title %}{{ project.name }}{% endblock %}
-{% block menu %}{% include 'partial/search.html' %}{% endblock %}
+{% block menu %}
+{% if perms.tracker.delete_project %}
+<a href="{% url 'project_delete' project.pk %}" class="btn btn-danger">Delete Project</a>
+{% endif %}
+{% include 'partial/search.html' %}
+{% endblock %}
 {% block content %}
 <h1 style="margin: 1rem">{{ project.name }}</h1>
+{% if perms.tracker.change_project %}
 <a href="{% url 'project_users' project.pk %}" class="btn btn-success">Project Users</a>
+{% endif %}
 <div class="card" style="margin-bottom: 1rem">
     <div class="card-body">{{ project.description }}</div>
 </div>
@@ -12,5 +19,7 @@
 {% empty %}
 <h3>No issues found for this project.</h3>
 {% endfor %}
+{% if perms.tracker.change_issue %}
 <a href="{% url 'issue_create_project' project.pk %}" class="btn btn-success">Create New Issue</a>
+{% endif %}
 {% endblock %}

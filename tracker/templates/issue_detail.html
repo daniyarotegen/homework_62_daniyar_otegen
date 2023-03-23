@@ -3,12 +3,16 @@
 Issue
 {% endblock %}
 {% block menu %}
+{% if perms.tracker.change_issue %}
 <li class="nav-item">
     <a class="nav-link" href="{% url 'issue_update' issue.pk %}">Edit</a>
 </li>
+{% endif %}
+{% if perms.tracker.delete_issue %}
 <li class="nav-item">
     <a class="nav-link" href="{% url 'issue_delete' issue.pk %}">Delete</a>
 </li>
+{% endif %}
 {% endblock %}
 {% block content %}
 <h1 style="margin: 1rem">Issue</h1>

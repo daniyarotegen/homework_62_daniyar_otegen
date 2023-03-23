@@ -26,6 +26,97 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2023-03-23T13:17:03.407Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "1",
+    "object_repr": "Project Manager",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2023-03-23T13:18:10.503Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "2",
+    "object_repr": "Team Lead",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2023-03-23T13:18:22.911Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "1",
+    "object_repr": "Project Manager",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2023-03-23T13:18:49.006Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "3",
+    "object_repr": "Developer",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2023-03-23T13:26:52.585Z",
+    "user": 1,
+    "content_type": 4,
+    "object_id": "3",
+    "object_repr": "manager",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2023-03-23T13:27:03.569Z",
+    "user": 1,
+    "content_type": 4,
+    "object_id": "4",
+    "object_repr": "lead",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2023-03-23T13:27:13.343Z",
+    "user": 1,
+    "content_type": 4,
+    "object_id": "5",
+    "object_repr": "dev",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -386,11 +477,60 @@
   }
 },
 {
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "Project Manager",
+    "permissions": [
+      13,
+      15,
+      16,
+      37,
+      38,
+      39,
+      40,
+      25,
+      26,
+      27,
+      28
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 2,
+  "fields": {
+    "name": "Team Lead",
+    "permissions": [
+      13,
+      15,
+      16,
+      37,
+      38,
+      39,
+      40
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 3,
+  "fields": {
+    "name": "Developer",
+    "permissions": [
+      37,
+      38,
+      39,
+      40
+    ]
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$390000$umTEJZlMFND0EJqv1whmN5$vWKmG7wQbFAMyonrJmnlBUsjDvnyuGC88THbk1QD6DQ=",
-    "last_login": "2023-03-10T11:51:01.250Z",
+    "last_login": "2023-03-23T13:26:36.164Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -400,6 +540,84 @@
     "is_active": true,
     "date_joined": "2023-03-10T11:50:50.896Z",
     "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$cdg8tLclURFO4gzngrxscs$uac8d4FZovfhWGS7G061NiYnQqe5FciSqg2GM2TA0RE=",
+    "last_login": "2023-03-21T08:10:31.618Z",
+    "is_superuser": false,
+    "username": "user",
+    "first_name": "user",
+    "last_name": "name",
+    "email": "user@email.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-03-21T08:10:31.427Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$gn7iOss2xn2Nt6EwWXDjA6$uEcM3TsIZVDbvdT47db+E0tonv7+XiighxkyQdAJS6A=",
+    "last_login": "2023-03-23T13:22:39Z",
+    "is_superuser": false,
+    "username": "manager",
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "johnsmith@company.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-03-23T13:22:39Z",
+    "groups": [
+      1
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$8C13d1Pqm109qMHLmX11oj$BNPRSLPaT7Qta6W0+LoOFdrqSvmsL17/BbAN7K25FDU=",
+    "last_login": "2023-03-23T13:24:35Z",
+    "is_superuser": false,
+    "username": "lead",
+    "first_name": "Michael",
+    "last_name": "Kovac",
+    "email": "michaelkovac@company.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-03-23T13:24:35Z",
+    "groups": [
+      2
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$NHfDdJjW7KqD6oFTvVb4qg$fk7EhTL+ghRUMwcbF4CU5l8SCcXE2yk54lr9Nwj8sVs=",
+    "last_login": "2023-03-23T13:28:08.172Z",
+    "is_superuser": false,
+    "username": "dev",
+    "first_name": "Jake",
+    "last_name": "Anderson",
+    "email": "jakeanderson@company.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-03-23T13:26:24Z",
+    "groups": [
+      3
+    ],
     "user_permissions": []
   }
 },
@@ -485,10 +703,26 @@
 },
 {
   "model": "sessions.session",
+  "pk": "075u1l0w94itds2420gsawbmgkkukj8l",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSEDaz4p0_sMaIElOIlAMnYV5e6xJRdJ-2bmvZnHbS1-67T4ObErG9nldwsYn1QPkB5Y743HVtdlDvxQ-Ek7n1qi1-10_w4K9rLXMAwAJGSypN2eBVJgrNQyj8LoEKN1SlpnEIWDQKhIYzQyGzBZ6ZTY5wvWzzfj:1pfKzA:ARZWV2EugMsCTNf4lLudMppctp1oN1I9Yx81iGXntjQ",
+    "expire_date": "2023-04-06T13:28:08.173Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "pndrw1jeqw9o4h89qb6d3r5aqkcpoh6g",
   "fields": {
     "session_data": ".eJxVjMEOwiAQRP-FsyFbikvx6N1vILC7SNXQpLQn47_bJj1oMqd5b-atQlyXEtYmcxhZXVSnTr9divSUugN-xHqfNE11mcekd0UftOnbxPK6Hu7fQYmtbGu0SIwJHBjw3CNaR2h8jkCJBmfOYtjgIDZ7n7FzgltAAKJLAD2qzxfIeDca:1pabH3:xDQ4Sj1_AOhzlOJoc2V9NDMn6Fex1wXcpqPG9xxnpPM",
     "expire_date": "2023-03-24T11:51:01.252Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "tk1wwgvrq7rqq1g7n1hng4fgl8c6lvwg",
+  "fields": {
+    "session_data": ".eJxVjMEOwiAQRP-FsyFbikvx6N1vILC7SNXQpLQn47_bJj1oMqd5b-atQlyXEtYmcxhZXVSnTr9divSUugN-xHqfNE11mcekd0UftOnbxPK6Hu7fQYmtbGu0SIwJHBjw3CNaR2h8jkCJBmfOYtjgIDZ7n7FzgltAAKJLAD2qzxfIeDca:1pfJas:QbQVslSOvi5s7gzvmNbb50p3h0l5GpAbznOnanim3s8",
+    "expire_date": "2023-04-06T11:58:58.170Z"
   }
 },
 {
@@ -752,13 +986,31 @@
   }
 },
 {
+  "model": "tracker.issue",
+  "pk": 16,
+  "fields": {
+    "summary": "some issue in monkey",
+    "description": "",
+    "project": 6,
+    "status": 1,
+    "created_at": "2023-03-23T13:29:25.184Z",
+    "updated_at": "2023-03-23T13:29:25.184Z",
+    "is_deleted": false,
+    "deleted_at": null,
+    "type": [
+      3
+    ]
+  }
+},
+{
   "model": "tracker.project",
   "pk": 4,
   "fields": {
     "name": "Capstone",
     "description": "",
     "start_date": "2023-03-10",
-    "end_date": null
+    "end_date": null,
+    "users": []
   }
 },
 {
@@ -768,7 +1020,10 @@
     "name": "Attractor",
     "description": "",
     "start_date": "2023-03-09",
-    "end_date": null
+    "end_date": null,
+    "users": [
+      1
+    ]
   }
 },
 {
@@ -778,7 +1033,10 @@
     "name": "Monkey",
     "description": "",
     "start_date": "2023-03-08",
-    "end_date": null
+    "end_date": null,
+    "users": [
+      2
+    ]
   }
 },
 {
@@ -788,7 +1046,8 @@
     "name": "New Project",
     "description": "",
     "start_date": "2023-03-11",
-    "end_date": "2023-03-12"
+    "end_date": "2023-03-12",
+    "users": []
   }
 },
 {
