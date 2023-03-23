@@ -1,0 +1,13 @@
+{% extends 'partial/base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<h2>Manage Project Users</h2>
+<form method="post">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <div class="form-row">
+    <input type="submit" value="Update Project Users">
+  </div>
+</form>
+{% endblock %}

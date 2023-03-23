@@ -3,6 +3,7 @@
 {% block menu %}{% include 'partial/search.html' %}{% endblock %}
 {% block content %}
 <h1 style="margin: 1rem">{{ project.name }}</h1>
+<a href="{% url 'project_users' project.pk %}" class="btn btn-success">Project Users</a>
 <div class="card" style="margin-bottom: 1rem">
     <div class="card-body">{{ project.description }}</div>
 </div>
